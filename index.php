@@ -23,7 +23,7 @@
         <div class="contenido">
               <div class="crear">
                   <h2>Nuevo Contacto</h2>
-                  <form action="crear.php" method="post">
+                  <form action="crear.php" method="post" id="formulario_crear_usuario">
                           <div class="campo">
                               <label for="nombre">Nombre:</label>
                               <input type="text" name="nombre" id="nombre" placeholder="Nombre">
@@ -32,51 +32,51 @@
                               <label for="numero">Teléfono:</label>      
                               <input type="text" name="numero" id="numero" placeholder="Número">
                           </div>
-                          <input type="submit" value="Agregar">  
+                          <input type="submit" value="Agregar" id="agregar" class="boton">  
                   </form>
               </div><!--.crear_contacto-->
         </div> <!--.contenido-->
         
         <div class="contenido existentes">
-              <h2>Contactos Existentes</h2>    
-              <p>Resultados: <?php echo $resultado->num_rows; ?> </p>
-              <table>
-                    <thead>
-                        <tr>
-                          <th>Nombre</th>
-                          <th>Teléfono</th>
-                          <th>Editar</th>
-                          <th>Borrar</th>
-                        </tr>
+            <h2>Contactos Existentes</h2>    
+            <p>Resultados: <?php echo $resultado->num_rows; ?> </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
                     </thead>
                     <tbody>
                         <?php //fetch_assoc, fetch_row, fetch_array, fetch_all, fetch_objects  ?>
                         <?php while($registros = $resultado->fetch_assoc() ) { ?>
                         <?php //dentro parentesis (MYSQLI_ASSOC, MYSQLI_NUM) ?>
                             <tr>
-                                  <td>
-                                    <?php echo $registros['nombre']; ?>
-                                  </td>
-                                  <td>
-                                    <?php echo $registros['numero']; ?>
-                                  </td>
-                                  <td>
-                                    <a href="editar.php?id=<?php echo $registros['id']; ?>">Editar</a>
-                                  </td>
-                                  <td class="borrar">
-                                    <a href="borrar.php?id=<?php echo $registros['id']; ?>">Borrar</a>
-                                  </td>
+                                <td>
+                                <?php echo $registros['nombre']; ?>
+                                </td>
+                                <td>
+                                <?php echo $registros['numero']; ?>
+                                </td>
+                                <td>
+                                <a href="editar.php?id=<?php echo $registros['id']; ?>">Editar</a>
+                                </td>
+                                <td class="borrar">
+                                <a href="borrar.php?id=<?php echo $registros['id']; ?>">Borrar</a>
+                                </td>
                             </tr>
-                        <?php } ?>
+                            <?php } ?>
                     </tbody>
-              </table>
-        </div>
-    </div>
+                  </table>
+              </div>
+            </div>
 
-<?php 
-    $conn->close();
-?>
+            <?php 
+                $conn->close();
+            ?>
 
-
+        <script src="js/app.js"></script>
   </body>
 </html>
