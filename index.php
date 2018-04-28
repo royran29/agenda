@@ -21,7 +21,7 @@
       <h1>Agenda de Contactos</h1>
 
         <div class="contenido">
-              <div class="crear">
+              <div id="crear_contacto" class="crear">
                   <h2>Nuevo Contacto</h2>
                   <form action="crear.php" method="post" id="formulario_crear_usuario">
                           <div class="campo">
