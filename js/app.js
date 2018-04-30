@@ -15,7 +15,18 @@ function registroExitoso(nombre){
 
     //insertBefore insert en un elemento HTML
     //parametros: elemento a insertar, en donde y en q posicion
-    divCrear.insertBefore(divMensaje, divCrear.childNodes(4));
+    divCrear.insertBefore(divMensaje, divCrear.childNodes[4]);
+
+    //mostar mensaje
+    divMensaje.classList.add('mostrar');
+    //ocultar mensaje
+    setTimeout(function(){
+        divMensaje.classList.add('ocultar');
+        setTimeout(function(){
+            var divPadreMensaje =  divMensaje.parentNode;
+            divPadreMensaje.removeChild(divMensaje);
+        }, 500);
+    }, 3000);
 }
 
 function crearUsuario(){
@@ -27,18 +38,17 @@ function crearUsuario(){
     var xhr = new XMLHttpRequest();
     xhr.open('POST', action, true);
     //Esto se necesita xq estamos usando FormData
-    xhr.setRequestHeader('X-Requested-Width', 'XMLHttpRequest');
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     
     //esta funcion se ejecuta cada vez q ready state cambia
     xhr.onreadystatechange = function(){
-        
-        if (xhr.readystate == 4 && xhr.status == 200) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
             var resultado = xhr.responseText;
+
             //convierte a un objeto una cadena JSON
             var json = JSON.parse(resultado);
            
             if (json.respuesta == true) {
-                
                 registroExitoso(json.nombre);
             }
         }

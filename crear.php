@@ -2,7 +2,7 @@
 
     //comprueba si la peticion entrante es ajax
     function peticion_ajax(){
-        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpResquest';
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest';
     }
 
     //Limpiar valores y q no contengan hmtl
@@ -15,7 +15,6 @@
         $sql .= "VALUES (NULL, '{$nombre}', '{$numero}');";
       
         $resultado = $conn->query($sql);
-
         if (peticion_ajax()) {
             echo json_encode(array('respuesta' => $resultado,
                                     'nombre' => $nombre));

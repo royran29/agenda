@@ -23,7 +23,7 @@
         <div class="contenido">
               <div id="crear_contacto" class="crear">
                   <h2>Nuevo Contacto</h2>
-                  <form action="crear.php" method="post" id="formulario_crear_usuario">
+                  <form action="crear.php" method="POST" id="formulario_crear_usuario">
                           <div class="campo">
                               <label for="nombre">Nombre:</label>
                               <input type="text" name="nombre" id="nombre" placeholder="Nombre">

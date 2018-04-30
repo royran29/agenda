@@ -96,3 +96,43 @@ a.volver {
   text-decoration: none;
   font-weight: bold;
 }
+
+/*Mensaje*/
+#mensaje{
+  margin-top: 10px;
+  border: 1px solid green;
+  height: 50px;
+  line-height: 50px; /*para centrar*/
+  text-align: center;
+  text-transform: uppercase;
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+  opacity: 0;
+}
+
+@keyframes mostrar{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes ocultar{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.mostrar{
+  animation: mostrar .5s ease-in forwards;
+}
+
+.ocultar{
+  animation: ocultar .5s ease-in forwards;
+}
