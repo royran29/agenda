@@ -1,10 +1,5 @@
 <?php
 
-    //comprueba si la peticion entrante es ajax
-    function peticion_ajax(){
-        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest';
-    }
-
     //Limpiar valores y q no contengan hmtl
     $nombre = htmlspecialchars($_POST['nombre']);
     $numero = htmlspecialchars($_POST['numero']);
@@ -17,7 +12,9 @@
         $resultado = $conn->query($sql);
         if (peticion_ajax()) {
             echo json_encode(array('respuesta' => $resultado,
-                                    'nombre' => $nombre));
+                                    'nombre' => $nombre,
+                                    'numero' => $numero,
+                                    'id' => $conn->insert_id));
         } else {
             exit;
         }

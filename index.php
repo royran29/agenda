@@ -40,20 +40,22 @@
         <div class="contenido existentes">
             <h2>Contactos Existentes</h2>    
             <p>Resultados: <?php echo $resultado->num_rows; ?> </p>
-            <table>
+            <table id="registrados">
                 <thead>
                     <tr>
                         <th>Nombre</th>
                         <th>Teléfono</th>
                         <th>Editar</th>
-                        <th>Borrar</th>
+                        <th>
+                            <button type="button" name="Borrar" id="btn_borrar" class="borrar">Borrar</button>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
                         <?php //fetch_assoc, fetch_row, fetch_array, fetch_all, fetch_objects  ?>
                         <?php while($registros = $resultado->fetch_assoc() ) { ?>
                         <?php //dentro parentesis (MYSQLI_ASSOC, MYSQLI_NUM) ?>
-                            <tr>
+                            <tr id="<?php echo $registros['id']; ?>">
                                 <td>
                                 <?php echo $registros['nombre']; ?>
                                 </td>
@@ -64,7 +66,7 @@
                                 <a href="editar.php?id=<?php echo $registros['id']; ?>">Editar</a>
                                 </td>
                                 <td class="borrar">
-                                <a href="borrar.php?id=<?php echo $registros['id']; ?>">Borrar</a>
+                                    <input class="borrar_contacto" type="checkbox" name="<?php echo $registros['id']; ?>">
                                 </td>
                             </tr>
                             <?php } ?>
