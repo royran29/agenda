@@ -38,8 +38,14 @@
         </div> <!--.contenido-->
         
         <div class="contenido existentes">
+
+            <div class="buscar">
+                <h2>Buscar</h2>
+                <input type="text" id="buscador" name="buscador" placeholder="Buscar" class="buscador">
+            </div>
+
             <h2>Contactos Existentes</h2>    
-            <p>Resultados: <?php echo $resultado->num_rows; ?> </p>
+            <p>Resultados: <span id="total"><?php echo $resultado->num_rows; ?></span> </p>
             <table id="registrados">
                 <thead>
                     <tr>
@@ -48,6 +54,7 @@
                         <th>Editar</th>
                         <th>
                             <button type="button" name="Borrar" id="btn_borrar" class="borrar">Borrar</button>
+                            <input id="borrar_todos" type="checkbox">
                         </th>
                     </tr>
                     </thead>
@@ -57,13 +64,16 @@
                         <?php //dentro parentesis (MYSQLI_ASSOC, MYSQLI_NUM) ?>
                             <tr id="<?php echo $registros['id']; ?>">
                                 <td>
-                                <?php echo $registros['nombre']; ?>
+                                <p><?php echo $registros['nombre']; ?></p>
+                                <input type="text" class="nombre_contacto" value="<?php echo $registros['nombre'] ?>" name="contacto_<?php echo $registros['id'] ?>">
                                 </td>
                                 <td>
-                                <?php echo $registros['numero']; ?>
+                                <p><?php echo $registros['numero']; ?></p>
+                                <input type="text" class="numero_contacto" value="<?php echo $registros['numero'] ?>" name="numero_<?php echo $registros['numero'] ?>">
                                 </td>
                                 <td>
-                                <a href="editar.php?id=<?php echo $registros['id']; ?>">Editar</a>
+                                <a class="editarBtn " href="#">Editar</a>
+                                <a class="guardarBtn" href="#">Guardar</a>
                                 </td>
                                 <td class="borrar">
                                     <input class="borrar_contacto" type="checkbox" name="<?php echo $registros['id']; ?>">

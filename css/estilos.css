@@ -42,12 +42,41 @@ div.campo {
   margin-bottom: 20px;
 }
 div.campo label {
-  width: 120px;
-  display: inline-block;
+  width: 80px;
+  float: left;
+  margin-top: 8px;
   font-size: 16px;
   font-family: Arial, Helvetica, Serif;
+  text-align: right;
+  font-weight: bold;
+  margin-right: 20px;
 }
-
+div.campo input{
+  height: 30px;
+  width: 70%;
+  padding: 10px;
+}
+.boton{
+  background-color: orange;
+  border: none;
+  padding: 10px 30px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
+div.buscar{
+  margin-bottom: 20px;
+}
+div.buscar h2{
+  margin-bottom: 10px;
+}
+.buscador{
+  width: 100%;
+  padding: 10px;
+}
+span#total{
+  font-weight: bold;
+}
 div.existentes {
   padding: 20px;
   background-color: #e1e1e1;
@@ -170,4 +199,22 @@ td.borrar input{
 
 .activo{
   background-color: red !important;
+}
+
+/*Modo edicion*/
+.modo-edicion p,
+.modo-edicion .editarBtn,
+tbody tr input[type="text"],
+div.existentes table tr a.guardarBtn{
+  display: none;
+}
+
+.modo-edicion input[type="text"],
+div.existentes table tr.modo-edicion a.guardarBtn{
+  display: block;
+}
+.desactivado{
+  pointer-events: none; 
+  cursor: default;
+  opacity: .5;
 }

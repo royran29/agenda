@@ -1,52 +1,39 @@
 <?php
+    require_once('funciones/bd_conexion.php');
 
-   $nombre = $_GET['nombre'];
-   $numero  =  $_GET['numero'];
-   $id = $_GET['id'];
-   
-   try {
-        require_once('funciones/bd_conexion.php');
-        $sql = "UPDATE `contactos` SET ";   
-        $sql .= "`nombre`= '{$nombre}', "; 
-        $sql .= "`numero` = '{$numero}' ";
-        $sql .= "WHERE `id` = {$id}";
-        
-        $resultado = $conn->query($sql);
-   } catch (Exception $e) {
-       $error = $e->getMessage();
-   } 
+    $datos = $_GET['datos'];
+
+    //convierte un string json en un array
+    //el segundo parametro es para establecer si el array es asociativo, por defecto es false 
+    $datos = json_decode($datos, true);
+
+    $nombre = $datos['nombre'];
+    $numero = $datos['numero'];
+    $id = $datos['id'];
+
+    if(peticion_ajax()){
+        try {
+            $sql = "UPDATE `contactos` SET ";   
+            $sql .= "`nombre`= '{$nombre}', "; 
+            $sql .= "`numero` = '{$numero}' ";
+            $sql .= "WHERE `id` = {$id}";
+            
+            $resultado = $conn->query($sql);
+
+            echo json_encode(array(
+                'respuesta' => $resultado,
+                'nombre' => $nombre,
+                'id' => $id,
+                'numero' => $numero
+            ));
+
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+        } 
+                    
+        $conn->close();
+    }
+    else{
+       exit;
+    }
 ?>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Agenda PHP</title>
-    <link href="https://fonts.googleapis.com/css?family=Proza+Libre" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/estilos.css" media="screen" title="no title">
-  </head>
-  <body>
-
-    <div class="contenedor">
-      <h1>Agenda de Contactos</h1>
-
-        <div class="contenido">
-  
-                <?php 
-                if ($conn->query($sql) === TRUE) {
-                    echo "Contacto Actualizado";
-                } else {
-                    echo "Error actualizando: " . $conn->error;
-                }
-                 ?>
-                <a class="volver" href="index.php">Volver a Inicio</a>
-        </div>
-    </div>
-
-<?php 
-    $conn->close();
-?>
-
-
-  </body>
-</html>

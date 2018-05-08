@@ -10,7 +10,9 @@
 
         if(peticion_ajax()){
             echo json_encode(array(
-                    'respuesta' => $resultado));
+                    'respuesta' => $resultado,
+                    'borrados' => $conn->affected_rows)//retorna cantidad de registros afectados por la operacion
+                    );
         }else{
             exit;
         }

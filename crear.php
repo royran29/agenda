@@ -14,7 +14,8 @@
             echo json_encode(array('respuesta' => $resultado,
                                     'nombre' => $nombre,
                                     'numero' => $numero,
-                                    'id' => $conn->insert_id));
+                                    'id' => $conn->insert_id)//retorna el id insertado
+                                    );
         } else {
             exit;
         }
